@@ -1,0 +1,11 @@
+# APK Monitor Pro - Dependências Python
+
+# Interface Gráfica (OBRIGATÓRIO)
+PyQt5>=5.15.0
+
+# Proxy MITM para tráfego de rede (OPCIONAL - pode desabilitar na interface)
+# Se não quiser instalar, desmarque "Habilitar Proxy" na interface
+mitmproxy>=10.0.0
+
+# Geração de executável (OPCIONAL)
+pyinstaller>=5.0.0

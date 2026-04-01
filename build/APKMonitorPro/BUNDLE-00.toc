@@ -1,0 +1,3 @@
+([('APKMonitorPro',
+   '/Users/henriquelima/LogCat_eOrder/dist/APKMonitorPro',
+   'EXECUTABLE')],)

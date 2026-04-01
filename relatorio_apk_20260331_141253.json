@@ -1,0 +1,261 @@
+{
+  "timestamp": "20260331_141253",
+  "apk": "🇧🇷 Rio - Ampla",
+  "package": "it.overit.amplawfm",
+  "logs": [
+    {
+      "timestamp": "03-31 14:12:25.608",
+      "pid": "994",
+      "tid": "994",
+      "level": "I",
+      "tag": "SurfaceFlinger",
+      "message": "[it.overit.amplawfm/it.overit.amplawfm.FormMain$_16376#5101] setFrameRateCategory: HighHint",
+      "raw": "03-31 14:12:25.608   994   994 I SurfaceFlinger: [it.overit.amplawfm/it.overit.amplawfm.FormMain$_16376#5101] setFrameRateCategory: HighHint"
+    },
+    {
+      "timestamp": "03-31 14:12:25.659",
+      "pid": "994",
+      "tid": "994",
+      "level": "I",
+      "tag": "SurfaceFlinger",
+      "message": "[17abf96 PopupWindow:20ae709#5177] attach to parent LayerHierarchy{RequestedLayerState{6d6d4ac it.overit.amplawfm/it.overit.amplawfm.FormMain#5097 parentId=5071} 3 children}",
+      "raw": "03-31 14:12:25.659   994   994 I SurfaceFlinger: [17abf96 PopupWindow:20ae709#5177] attach to parent LayerHierarchy{RequestedLayerState{6d6d4ac it.overit.amplawfm/it.overit.amplawfm.FormMain#5097 parentId=5071} 3 children}"
+    },
+    {
+      "timestamp": "03-31 14:12:26.366",
+      "pid": "994",
+      "tid": "1056",
+      "level": "I",
+      "tag": "SurfaceFlinger",
+      "message": "id=5181 createSurf, flag=84004, c4c129c it.overit.amplawfm/it.overit.amplawfm.FormMain#5181",
+      "raw": "03-31 14:12:26.366   994  1056 I SurfaceFlinger: id=5181 createSurf, flag=84004, c4c129c it.overit.amplawfm/it.overit.amplawfm.FormMain#5181"
+    },
+    {
+      "timestamp": "03-31 14:12:26.368",
+      "pid": "994",
+      "tid": "994",
+      "level": "I",
+      "tag": "SurfaceFlinger",
+      "message": "[c4c129c it.overit.amplawfm/it.overit.amplawfm.FormMain#5181] attach to parent LayerHierarchy{RequestedLayerState{ActivityRecord{37748341 u0 it.overit.amplawfm/.FormMain t549}#5071 parentId=5070} 4 children}",
+      "raw": "03-31 14:12:26.368   994   994 I SurfaceFlinger: [c4c129c it.overit.amplawfm/it.overit.amplawfm.FormMain#5181] attach to parent LayerHierarchy{RequestedLayerState{ActivityRecord{37748341 u0 it.overit.amplawfm/.FormMain t549}#5071 parentId=5070} 4 children}"
+    },
+    {
+      "timestamp": "03-31 14:12:26.374",
+      "pid": "16376",
+      "tid": "16376",
+      "level": "I",
+      "tag": "InsetsController",
+      "message": "onStateChanged: host=it.overit.amplawfm/it.overit.amplawfm.FormMain, from=android.view.ViewRootImpl.onInsetsStateChanged:3026, state=InsetsState: {mDisplayFrame=Rect(0, 0 - 1080, 2340), mDisplayCutout=DisplayCutout{insets=Rect(0, 77 - 0, 0) waterfall=Insets{left=0, top=0, right=0, bottom=0} boundingRect={Bounds=[Rect(0, 0 - 0, 0), Rect(477, 0 - 603, 77), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0)]} cutoutPathParserInfo={CutoutPathParserInfo{displayWidth=1080 displayHeight=2340 physicalDisplayWidth=1080 physicalDisplayHeight=2340 density={2.8125} cutoutSpec={M 0,0 H -22.4‬ V 27.37777777777778‬ H 22.4‬ V 0 H 0 Z @dp} rotation={0} scale={1.0} physicalPixelDisplaySizeRatio={1.0}}} sideOverrides={}}, mRoundedCorners=RoundedCorners{[RoundedCorner{position=TopLeft, radius=113, center=Point(113, 113)}, RoundedCorner{position=TopRight, radius=113, center=Point(967, 113)}, RoundedCorner{position=BottomRight, radius=113, center=Point(967, 2227)}, RoundedCorner{position=BottomLeft, radius=113, center=Point(113, 2227)}]}  mRoundedCornerFrame=Rect(0, 0 - 1080, 2340), mPrivacyIndicatorBounds=PrivacyIndicatorBounds {static bounds=Rect(956, 0 - 1080, 77) rotation=0}, mDisplayShape=DisplayShape{ spec=-311912193 displayWidth=1080 displayHeight=2340 physicalPixelDisplaySizeRatio=1.0 rotation=0 offsetX=0 offsetY=0 scale=1.0}, mSources= { InsetsSource: {27 mType=displayCutout mFrame=[0,0][1080,77] mVisible=true mFlags= mSideHint=TOP mBoundingRects=null}, InsetsSource: {12020000 mType=statusBars mFrame=[0,0][1080,77] mVisible=true mFlags= mSideHint=TOP mBoundingRects=null}, InsetsSource: {12020005 mType=mandatorySystemGestures mFrame=[0,0][1080,111] mVisible=true mFlags= mSideHint=TOP mBoundingRects=null}, InsetsSource: {12020006 mType=tappableElement mFrame=[0,0][1080,77] mVisible=true mFlags= mSideHint=TOP mBoundingRects=null}, InsetsSource: {47f40001 mType=navigationBars mFrame=[0,2205][1080,2340] mVisible=true mFlags= mSideHint=BOTTOM mBoundingRects=null}, InsetsSource: {47f40004 mType=systemGestures mFrame=[0,0][0,0] mVisible=true mFlags= mSideHint=NONE mBoundingRects=null}, InsetsSource: {47f40005 mType=mandatorySystemGestures mFrame=[0,2205][1080,2340] mVisible=true mFlags= mSideHint=BOTTOM mBoundingRects=null}, InsetsSource: {47f40006 mType=tappableElement mFrame=[0,2205][1080,2340] mVisible=true mFlags= mSideHint=BOTTOM mBoundingRects=null}, InsetsSource: {47f40024 mType=systemGestures mFrame=[0,0][0,0] mVisible=true mFlags= mSideHint=NONE mBoundingRects=null} }",
+      "raw": "03-31 14:12:26.374 16376 16376 I InsetsController: onStateChanged: host=it.overit.amplawfm/it.overit.amplawfm.FormMain, from=android.view.ViewRootImpl.onInsetsStateChanged:3026, state=InsetsState: {mDisplayFrame=Rect(0, 0 - 1080, 2340), mDisplayCutout=DisplayCutout{insets=Rect(0, 77 - 0, 0) waterfall=Insets{left=0, top=0, right=0, bottom=0} boundingRect={Bounds=[Rect(0, 0 - 0, 0), Rect(477, 0 - 603, 77), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0)]} cutoutPathParserInfo={CutoutPathParserInfo{displayWidth=1080 displayHeight=2340 physicalDisplayWidth=1080 physicalDisplayHeight=2340 density={2.8125} cutoutSpec={M 0,0 H -22.4‬ V 27.37777777777778‬ H 22.4‬ V 0 H 0 Z @dp} rotation={0} scale={1.0} physicalPixelDisplaySizeRatio={1.0}}} sideOverrides={}}, mRoundedCorners=RoundedCorners{[RoundedCorner{position=TopLeft, radius=113, center=Point(113, 113)}, RoundedCorner{position=TopRight, radius=113, center=Point(967, 113)}, RoundedCorner{position=BottomRight, radius=113, center=Point(967, 2227)}, RoundedCorner{position=BottomLeft, radius=113, center=Point(113, 2227)}]}  mRoundedCornerFrame=Rect(0, 0 - 1080, 2340), mPrivacyIndicatorBounds=PrivacyIndicatorBounds {static bounds=Rect(956, 0 - 1080, 77) rotation=0}, mDisplayShape=DisplayShape{ spec=-311912193 displayWidth=1080 displayHeight=2340 physicalPixelDisplaySizeRatio=1.0 rotation=0 offsetX=0 offsetY=0 scale=1.0}, mSources= { InsetsSource: {27 mType=displayCutout mFrame=[0,0][1080,77] mVisible=true mFlags= mSideHint=TOP mBoundingRects=null}, InsetsSource: {12020000 mType=statusBars mFrame=[0,0][1080,77] mVisible=true mFlags= mSideHint=TOP mBoundingRects=null}, InsetsSource: {12020005 mType=mandatorySystemGestures mFrame=[0,0][1080,111] mVisible=true mFlags= mSideHint=TOP mBoundingRects=null}, InsetsSource: {12020006 mType=tappableElement mFrame=[0,0][1080,77] mVisible=true mFlags= mSideHint=TOP mBoundingRects=null}, InsetsSource: {47f40001 mType=navigationBars mFrame=[0,2205][1080,2340] mVisible=true mFlags= mSideHint=BOTTOM mBoundingRects=null}, InsetsSource: {47f40004 mType=systemGestures mFrame=[0,0][0,0] mVisible=true mFlags= mSideHint=NONE mBoundingRects=null}, InsetsSource: {47f40005 mType=mandatorySystemGestures mFrame=[0,2205][1080,2340] mVisible=true mFlags= mSideHint=BOTTOM mBoundingRects=null}, InsetsSource: {47f40006 mType=tappableElement mFrame=[0,2205][1080,2340] mVisible=true mFlags= mSideHint=BOTTOM mBoundingRects=null}, InsetsSource: {47f40024 mType=systemGestures mFrame=[0,0][0,0] mVisible=true mFlags= mSideHint=NONE mBoundingRects=null} }"
+    },
+    {
+      "timestamp": "03-31 14:12:26.376",
+      "pid": "994",
+      "tid": "994",
+      "level": "I",
+      "tag": "SurfaceFlinger",
+      "message": "RequestedLayer [c4c129c it.overit.amplawfm/it.overit.amplawfm.FormMain#5181] hidden!! flag  from(1) --> to(0)",
+      "raw": "03-31 14:12:26.376   994   994 I SurfaceFlinger: RequestedLayer [c4c129c it.overit.amplawfm/it.overit.amplawfm.FormMain#5181] hidden!! flag  from(1) --> to(0)"
+    },
+    {
+      "timestamp": "03-31 14:12:26.388",
+      "pid": "1367",
+      "tid": "2102",
+      "level": "I",
+      "tag": "WindowManager",
+      "message": "Relayout Window{c4c129c u0 it.overit.amplawfm/it.overit.amplawfm.FormMain}: viewVisibility=0 req=1026x399 ty=2 d0",
+      "raw": "03-31 14:12:26.388  1367  2102 I WindowManager: Relayout Window{c4c129c u0 it.overit.amplawfm/it.overit.amplawfm.FormMain}: viewVisibility=0 req=1026x399 ty=2 d0"
+    },
+    {
+      "timestamp": "03-31 14:12:26.390",
+      "pid": "994",
+      "tid": "1056",
+      "level": "I",
+      "tag": "SurfaceFlinger",
+      "message": "id=5184 createSurf, flag=44004, it.overit.amplawfm/it.overit.amplawfm.FormMain$_16376#5184",
+      "raw": "03-31 14:12:26.390   994  1056 I SurfaceFlinger: id=5184 createSurf, flag=44004, it.overit.amplawfm/it.overit.amplawfm.FormMain$_16376#5184"
+    },
+    {
+      "timestamp": "03-31 14:12:26.393",
+      "pid": "994",
+      "tid": "994",
+      "level": "I",
+      "tag": "SurfaceFlinger",
+      "message": "[it.overit.amplawfm/it.overit.amplawfm.FormMain$_16376#5184] attach to parent LayerHierarchy{RequestedLayerState{c4c129c it.overit.amplawfm/it.overit.amplawfm.FormMain#5181 parentId=5071 z=1} 1 children}",
+      "raw": "03-31 14:12:26.393   994   994 I SurfaceFlinger: [it.overit.amplawfm/it.overit.amplawfm.FormMain$_16376#5184] attach to parent LayerHierarchy{RequestedLayerState{c4c129c it.overit.amplawfm/it.overit.amplawfm.FormMain#5181 parentId=5071 z=1} 1 children}"
+    },
+    {
+      "timestamp": "03-31 14:12:26.407",
+      "pid": "994",
+      "tid": "1057",
+      "level": "I",
+      "tag": "SurfaceFlinger",
+      "message": "[it.overit.amplawfm/it.overit.amplawfm.FormMain$_16376#5184] setTransactionState with the first frame. bufferData(ID: 70334384439344, frameNumber: 1)",
+      "raw": "03-31 14:12:26.407   994  1057 I SurfaceFlinger: [it.overit.amplawfm/it.overit.amplawfm.FormMain$_16376#5184] setTransactionState with the first frame. bufferData(ID: 70334384439344, frameNumber: 1)"
+    },
+    {
+      "timestamp": "03-31 14:12:26.414",
+      "pid": "1367",
+      "tid": "1394",
+      "level": "I",
+      "tag": "WindowManager",
+      "message": "Reparenting to leash, surface=Surface(name=c4c129c it.overit.amplawfm/it.overit.amplawfm.FormMain)/@0x4a6c35d, leashParent=Surface(name=ActivityRecord{37748341 u0 it.overit.amplawfm/.FormMain t549})/@0xef278c",
+      "raw": "03-31 14:12:26.414  1367  1394 I WindowManager: Reparenting to leash, surface=Surface(name=c4c129c it.overit.amplawfm/it.overit.amplawfm.FormMain)/@0x4a6c35d, leashParent=Surface(name=ActivityRecord{37748341 u0 it.overit.amplawfm/.FormMain t549})/@0xef278c"
+    },
+    {
+      "timestamp": "03-31 14:12:26.414",
+      "pid": "16376",
+      "tid": "16376",
+      "level": "I",
+      "tag": "InsetsSourceConsumer",
+      "message": "applyRequestedVisibilityToControl: visible=true, type=navigationBars, host=it.overit.amplawfm/it.overit.amplawfm.FormMain",
+      "raw": "03-31 14:12:26.414 16376 16376 I InsetsSourceConsumer: applyRequestedVisibilityToControl: visible=true, type=navigationBars, host=it.overit.amplawfm/it.overit.amplawfm.FormMain"
+    },
+    {
+      "timestamp": "03-31 14:12:26.415",
+      "pid": "994",
+      "tid": "1056",
+      "level": "I",
+      "tag": "SurfaceFlinger",
+      "message": "id=5185 createSurf, flag=24004, Surface(name=c4c129c it.overit.amplawfm/it.overit.amplawfm.FormMain)/@0x4a6c35d - animation-leash of window_animation#5185",
+      "raw": "03-31 14:12:26.415   994  1056 I SurfaceFlinger: id=5185 createSurf, flag=24004, Surface(name=c4c129c it.overit.amplawfm/it.overit.amplawfm.FormMain)/@0x4a6c35d - animation-leash of window_animation#5185"
+    },
+    {
+      "timestamp": "03-31 14:12:26.415",
+      "pid": "16376",
+      "tid": "16376",
+      "level": "I",
+      "tag": "InsetsSourceConsumer",
+      "message": "applyRequestedVisibilityToControl: visible=true, type=statusBars, host=it.overit.amplawfm/it.overit.amplawfm.FormMain",
+      "raw": "03-31 14:12:26.415 16376 16376 I InsetsSourceConsumer: applyRequestedVisibilityToControl: visible=true, type=statusBars, host=it.overit.amplawfm/it.overit.amplawfm.FormMain"
+    },
+    {
+      "timestamp": "03-31 14:12:26.418",
+      "pid": "994",
+      "tid": "994",
+      "level": "I",
+      "tag": "SurfaceFlinger",
+      "message": "[Surface(name=c4c129c it.overit.amplawfm/it.overit.amplawfm.FormMain)/@0x4a6c35d - animation-leash of window_animation#5185] attach to parent LayerHierarchy{RequestedLayerState{ActivityRecord{37748341 u0 it.overit.amplawfm/.FormMain t549}#5071 parentId=5070} 5 children}",
+      "raw": "03-31 14:12:26.418   994   994 I SurfaceFlinger: [Surface(name=c4c129c it.overit.amplawfm/it.overit.amplawfm.FormMain)/@0x4a6c35d - animation-leash of window_animation#5185] attach to parent LayerHierarchy{RequestedLayerState{ActivityRecord{37748341 u0 it.overit.amplawfm/.FormMain t549}#5071 parentId=5070} 5 children}"
+    },
+    {
+      "timestamp": "03-31 14:12:26.435",
+      "pid": "994",
+      "tid": "994",
+      "level": "I",
+      "tag": "SurfaceFlinger",
+      "message": "RequestedLayer [Surface(name=c4c129c it.overit.ampla[...]ation-leash of window_animation#5185] hidden!! flag  from(1) --> to(0)",
+      "raw": "03-31 14:12:26.435   994   994 I SurfaceFlinger: RequestedLayer [Surface(name=c4c129c it.overit.ampla[...]ation-leash of window_animation#5185] hidden!! flag  from(1) --> to(0)"
+    },
+    {
+      "timestamp": "03-31 14:12:26.435",
+      "pid": "994",
+      "tid": "994",
+      "level": "I",
+      "tag": "SurfaceFlinger",
+      "message": "RequestedLayer [it.overit.amplawfm/it.overit.amplawfm.FormMain$_16376#5184] hidden!! flag  from(1) --> to(0)",
+      "raw": "03-31 14:12:26.435   994   994 I SurfaceFlinger: RequestedLayer [it.overit.amplawfm/it.overit.amplawfm.FormMain$_16376#5184] hidden!! flag  from(1) --> to(0)"
+    },
+    {
+      "timestamp": "03-31 14:12:26.435",
+      "pid": "994",
+      "tid": "994",
+      "level": "I",
+      "tag": "SurfaceFlinger",
+      "message": "[LayerHierarchy{RequestedLayerState{c4c129c it.overit.amplawfm/it.overit.amplawfm.FormMain#5181 parentId=5185 z=1} 1 children}] reparent to LayerHierarchy{RequestedLayerState{Surface(name=c4c129c it.overit.amplawfm/it.overit.amplawfm.FormMain)/@0x4a6c35d - animation-leash of window_animation#5185 parentId=5071 z=1} 1 children}",
+      "raw": "03-31 14:12:26.435   994   994 I SurfaceFlinger: [LayerHierarchy{RequestedLayerState{c4c129c it.overit.amplawfm/it.overit.amplawfm.FormMain#5181 parentId=5185 z=1} 1 children}] reparent to LayerHierarchy{RequestedLayerState{Surface(name=c4c129c it.overit.amplawfm/it.overit.amplawfm.FormMain)/@0x4a6c35d - animation-leash of window_animation#5185 parentId=5071 z=1} 1 children}"
+    },
+    {
+      "timestamp": "03-31 14:12:26.435",
+      "pid": "994",
+      "tid": "994",
+      "level": "I",
+      "tag": "SurfaceFlinger",
+      "message": "[LayerHierarchy{RequestedLayerState{Dim Layer for - Task=549#5186 parentId=5070 relativeParentId=5181 z=-1} no children}] RelativeParent to LayerHierarchy{RequestedLayerState{c4c129c it.overit.amplawfm/it.overit.amplawfm.FormMain#5181 parentId=5185 z=1} 2 children}",
+      "raw": "03-31 14:12:26.435   994   994 I SurfaceFlinger: [LayerHierarchy{RequestedLayerState{Dim Layer for - Task=549#5186 parentId=5070 relativeParentId=5181 z=-1} no children}] RelativeParent to LayerHierarchy{RequestedLayerState{c4c129c it.overit.amplawfm/it.overit.amplawfm.FormMain#5181 parentId=5185 z=1} 2 children}"
+    },
+    {
+      "timestamp": "03-31 14:12:26.723",
+      "pid": "1367",
+      "tid": "1394",
+      "level": "I",
+      "tag": "WindowManager",
+      "message": "Reparenting to original parent: Surface(name=ActivityRecord{37748341 u0 it.overit.amplawfm/.FormMain t549})/@0xef278c, destroy=true, surface=Surface(name=c4c129c it.overit.amplawfm/it.overit.amplawfm.FormMain)/@0x4a6c35d",
+      "raw": "03-31 14:12:26.723  1367  1394 I WindowManager: Reparenting to original parent: Surface(name=ActivityRecord{37748341 u0 it.overit.amplawfm/.FormMain t549})/@0xef278c, destroy=true, surface=Surface(name=c4c129c it.overit.amplawfm/it.overit.amplawfm.FormMain)/@0x4a6c35d"
+    },
+    {
+      "timestamp": "03-31 14:12:26.735",
+      "pid": "994",
+      "tid": "994",
+      "level": "I",
+      "tag": "SurfaceFlinger",
+      "message": "[LayerHierarchy{RequestedLayerState{Surface(name=c4c129c it.overit.amplawfm/it.overit.amplawfm.FormMain)/@0x4a6c35d - animation-leash of window_animation#5185 z=1} 1 children}] reparent to OffscreenRoot",
+      "raw": "03-31 14:12:26.735   994   994 I SurfaceFlinger: [LayerHierarchy{RequestedLayerState{Surface(name=c4c129c it.overit.amplawfm/it.overit.amplawfm.FormMain)/@0x4a6c35d - animation-leash of window_animation#5185 z=1} 1 children}] reparent to OffscreenRoot"
+    },
+    {
+      "timestamp": "03-31 14:12:26.736",
+      "pid": "994",
+      "tid": "994",
+      "level": "I",
+      "tag": "SurfaceFlinger",
+      "message": "[LayerHierarchy{RequestedLayerState{Surface(name=c4c129c it.overit.amplawfm/it.overit.amplawfm.FormMain)/@0x4a6c35d - animation-leash of window_animation#5185 z=1} 1 children}] RelativeParent to null",
+      "raw": "03-31 14:12:26.736   994   994 I SurfaceFlinger: [LayerHierarchy{RequestedLayerState{Surface(name=c4c129c it.overit.amplawfm/it.overit.amplawfm.FormMain)/@0x4a6c35d - animation-leash of window_animation#5185 z=1} 1 children}] RelativeParent to null"
+    },
+    {
+      "timestamp": "03-31 14:12:26.736",
+      "pid": "994",
+      "tid": "994",
+      "level": "I",
+      "tag": "SurfaceFlinger",
+      "message": "[LayerHierarchy{RequestedLayerState{c4c129c it.overit.amplawfm/it.overit.amplawfm.FormMain#5181 parentId=5071 z=1} 2 children}] reparent to LayerHierarchy{RequestedLayerState{ActivityRecord{37748341 u0 it.overit.amplawfm/.FormMain t549}#5071 parentId=5070} 4 children}",
+      "raw": "03-31 14:12:26.736   994   994 I SurfaceFlinger: [LayerHierarchy{RequestedLayerState{c4c129c it.overit.amplawfm/it.overit.amplawfm.FormMain#5181 parentId=5071 z=1} 2 children}] reparent to LayerHierarchy{RequestedLayerState{ActivityRecord{37748341 u0 it.overit.amplawfm/.FormMain t549}#5071 parentId=5070} 4 children}"
+    },
+    {
+      "timestamp": "03-31 14:12:26.738",
+      "pid": "994",
+      "tid": "994",
+      "level": "I",
+      "tag": "SurfaceFlinger",
+      "message": "id=5185 Removed Surface(name=c4c129c it.overit.amplawfm/it.overit.amplawfm.FormMain)/@0x4a6c35d - animation-leash of window_animation#5185 (142)",
+      "raw": "03-31 14:12:26.738   994   994 I SurfaceFlinger: id=5185 Removed Surface(name=c4c129c it.overit.amplawfm/it.overit.amplawfm.FormMain)/@0x4a6c35d - animation-leash of window_animation#5185 (142)"
+    },
+    {
+      "timestamp": "03-31 14:12:26.744",
+      "pid": "994",
+      "tid": "994",
+      "level": "I",
+      "tag": "SurfaceFlinger",
+      "message": "destroyed Surface(name=c4c129c it.overit.amplawfm/it.overit.amplawfm.FormMain)/@0x4a6c35d - animation-leash of window_animation#5185",
+      "raw": "03-31 14:12:26.744   994   994 I SurfaceFlinger: destroyed Surface(name=c4c129c it.overit.amplawfm/it.overit.amplawfm.FormMain)/@0x4a6c35d - animation-leash of window_animation#5185"
+    },
+    {
+      "timestamp": "03-31 14:12:26.744",
+      "pid": "994",
+      "tid": "994",
+      "level": "I",
+      "tag": "Layer",
+      "message": ": id=5185 Destroyed Surface(name=c4c129c it.overit.amplawfm/it.overit.amplawfm.FormMain)/@0x4a6c35d - animation-leash of window_animation#5185",
+      "raw": "03-31 14:12:26.744   994   994 I Layer   : id=5185 Destroyed Surface(name=c4c129c it.overit.amplawfm/it.overit.amplawfm.FormMain)/@0x4a6c35d - animation-leash of window_animation#5185"
+    },
+    {
+      "timestamp": "03-31 14:12:28.615",
+      "pid": "994",
+      "tid": "994",
+      "level": "I",
+      "tag": "SurfaceFlinger",
+      "message": "[it.overit.amplawfm/it.overit.amplawfm.FormMain$_16376#5101] setFrameRateCategory: NoPreference",
+      "raw": "03-31 14:12:28.615   994   994 I SurfaceFlinger: [it.overit.amplawfm/it.overit.amplawfm.FormMain$_16376#5101] setFrameRateCategory: NoPreference"
+    },
+    {
+      "timestamp": "03-31 14:12:29.915",
+      "pid": "2766",
+      "tid": "2802",
+      "level": "I",
+      "tag": "AppState_FLP",
+      "message": "Success to save #0 snapshot in appStateMap, time=340855558 / appList=it.overit.enelsaopaulowfm_gps_10000_1",
+      "raw": "03-31 14:12:29.915  2766  2802 I AppState_FLP: Success to save #0 snapshot in appStateMap, time=340855558 / appList=it.overit.enelsaopaulowfm_gps_10000_1"
+    }
+  ],
+  "network": [],
+  "errors": []
+}

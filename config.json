@@ -1,0 +1,103 @@
+{
+  "app_name": "APK Monitor Pro",
+  "version": "1.0.0",
+  
+  "packages": {
+    "rio": {
+      "name": "Rio - Ampla",
+      "package": "it.overit.amplawfm",
+      "description": "APK Rio de Janeiro"
+    },
+    "sao_paulo": {
+      "name": "São Paulo - Enel",
+      "package": "it.overit.enelsaopaulowfm",
+      "description": "APK São Paulo"
+    },
+    "ceara": {
+      "name": "Ceará - Coelce",
+      "package": "it.overit.coelcewfm",
+      "description": "APK Ceará"
+    }
+  },
+  
+  "adb": {
+    "default_log_level": "I",
+    "buffer_size": 1000,
+    "auto_clear_on_start": true
+  },
+  
+  "proxy": {
+    "default_port": 8888,
+    "capture_binary": false,
+    "max_content_size": 5242880,
+    "timeout": 30
+  },
+  
+  "ui": {
+    "theme": "light",
+    "font_size": 9,
+    "max_logs_display": 10000,
+    "auto_scroll": true,
+    "color_scheme": {
+      "verbose": "#888888",
+      "debug": "#0000FF",
+      "info": "#008000",
+      "warning": "#FFA500",
+      "error": "#FF0000",
+      "fatal": "#8B0000"
+    }
+  },
+  
+  "filters": {
+    "ignore_tags": [
+      "chromium",
+      "webview"
+    ],
+    "highlight_keywords": [
+      "sync",
+      "error",
+      "exception",
+      "crash",
+      "null",
+      "network",
+      "connection"
+    ],
+    "quick_filters": {
+      "sync": ["sync", "sincronização", "sincronizacao", "synchronize"],
+      "network": ["network", "http", "https", "connection", "socket", "request", "response"],
+      "exception": ["exception", "exceção", "excecao", "throw", "throws"],
+      "crash": ["crash", "fatal", "force close", "anr", "not responding"]
+    }
+  },
+  
+  "reports": {
+    "auto_save": false,
+    "output_directory": "reports",
+    "max_logs_in_html": 1000,
+    "max_network_in_html": 500
+  },
+  
+  "analysis": {
+    "detect_crashes": true,
+    "detect_anr": true,
+    "detect_memory_leaks": true,
+    "group_similar_errors": true
+  },
+  
+  "network": {
+    "sensitive_headers": [
+      "Authorization",
+      "Cookie",
+      "Set-Cookie",
+      "X-API-Key"
+    ],
+    "sensitive_keywords": [
+      "password",
+      "token",
+      "secret",
+      "key",
+      "cpf",
+      "credit_card"
+    ]
+  }
+}
