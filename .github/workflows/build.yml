@@ -29,7 +29,7 @@ jobs:
         pyinstaller --name=APKMonitorPro --onefile --clean --noconfirm --hidden-import=apk_monitor_pro.core.adb_manager --hidden-import=apk_monitor_pro.analyzers.error_diagnostics --hidden-import=apk_monitor_pro.integrations.frida_hook --hidden-import=apk_monitor_pro.integrations.tcpdump_capture --hidden-import=apk_monitor_pro.utils.report_generator --add-data="apk_monitor_pro;apk_monitor_pro" apk_monitor_pro.py
     
     - name: Upload Windows Artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: APKMonitorPro-Windows
         path: dist/APKMonitorPro.exe
@@ -56,7 +56,7 @@ jobs:
         pyinstaller --name=APKMonitorPro --windowed --onefile --clean --noconfirm --hidden-import=apk_monitor_pro.core.adb_manager --hidden-import=apk_monitor_pro.analyzers.error_diagnostics --hidden-import=apk_monitor_pro.integrations.frida_hook --hidden-import=apk_monitor_pro.integrations.tcpdump_capture --hidden-import=apk_monitor_pro.utils.report_generator --add-data="apk_monitor_pro:apk_monitor_pro" apk_monitor_pro.py
     
     - name: Upload macOS Artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: APKMonitorPro-macOS
         path: dist/APKMonitorPro.app
