@@ -177,7 +177,7 @@ class ADBManager:
             
             if pid:
                 cmd = [
-                    "adb", "logcat",
+                    self.adb_path, "logcat",
                     "-v", "threadtime",
                     "--pid", str(pid),
                     f"*:{log_level}"
@@ -187,7 +187,7 @@ class ADBManager:
         else:
             # Modo Flexível: Qualquer processo Overit
             cmd = [
-                "adb", "logcat",
+                self.adb_path, "logcat",
                 "-v", "threadtime",
                 f"*:{log_level}"
             ]
