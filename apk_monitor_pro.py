@@ -259,7 +259,7 @@ class APKMonitorUI(QMainWindow):
         l.addWidget(self.stats)
         
         w.setLayout(l)
-        self.check_dev()
+        # self.check_dev()  # Removido: verificação só ao clicar INICIAR
         return w
         
     def make_diag(self):
@@ -449,6 +449,9 @@ class APKMonitorUI(QMainWindow):
                 QMessageBox.critical(self, "Erro", "\n".join(res['errors']))
                 
     def start(self):
+        # Atualiza status do dispositivo
+        self.check_dev()
+        
         # Verifica ADB primeiro
         if not self.adb.check_adb_available():
             QMessageBox.critical(
@@ -802,10 +805,9 @@ class APKMonitorUI(QMainWindow):
                         "   adb shell 'su -c /data/local/tmp/frida-server &'"
                     )
 
- 
+
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     ui = APKMonitorUI()
     ui.show()
     sys.exit(app.exec_())
-  
