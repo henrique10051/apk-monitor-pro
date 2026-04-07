@@ -375,30 +375,27 @@ class APKMonitorUI(QMainWindow):
         w = QWidget()
         l = QVBoxLayout()
         
-        l.addWidget(QLabel("<h2>📄 Exportar Dados do Monitoramento</h2>"))
+        l.addWidget(QLabel("<h2>📄 Relatórios</h2>"))
         
-        info = QLabel(
-            "O relatório consolida todos os logs capturados, eventos de rede e "
-            "diagnósticos de erro em um único arquivo."
-        )
-        info.setWordWrap(True)
-        info.setStyleSheet("color: #666; margin-bottom: 20px;")
-        l.addWidget(info)
+        dev = QPushButton("👨‍💻 Para DEVs")
+        dev.clicked.connect(lambda: self.gen_report('dev'))
+        dev.setStyleSheet("background:#2196F3;color:white;padding:15px")
+        l.addWidget(dev)
         
-        btn_json = QPushButton("{ } Exportar JSON (Dados Brutos)")
-        btn_json.clicked.connect(lambda: self.gen_report('json'))
-        btn_json.setStyleSheet("background:#2196F3;color:white;padding:15px;font-weight:bold;font-size:14px;")
-        l.addWidget(btn_json)
+        infra = QPushButton("🌐 Para INFRA")
+        infra.clicked.connect(lambda: self.gen_report('infra'))
+        infra.setStyleSheet("background:#4CAF50;color:white;padding:15px")
+        l.addWidget(infra)
         
-        btn_html = QPushButton("🌐 Exportar HTML (Dashboard Visual)")
-        btn_html.clicked.connect(lambda: self.gen_report('html'))
-        btn_html.setStyleSheet("background:#4CAF50;color:white;padding:15px;font-weight:bold;font-size:14px;")
-        l.addWidget(btn_html)
+        exe = QPushButton("📊 Executivo")
+        exe.clicked.connect(lambda: self.gen_report('exec'))
+        exe.setStyleSheet("background:#FF9800;color:white;padding:15px")
+        l.addWidget(exe)
         
         l.addStretch()
         w.setLayout(l)
         return w
-
+        
     def pkg_changed(self, i):
         self.pkg_input.setVisible(i == 3)
         
@@ -415,6 +412,25 @@ class APKMonitorUI(QMainWindow):
                 self.dev_lbl.setText("📱 Nenhum ⚠️")
         else:
             self.dev_lbl.setText("📱 ADB não encontrado ❌")
+            
+            # Mostra instruções específicas para Windows
+            import sys
+            if sys.platform.startswith('win'):
+                QMessageBox.critical(
+                    self,
+                    "ADB não encontrado",
+                    "ADB (Android Debug Bridge) não foi encontrado!\n\n"
+                    "📥 INSTALAÇÃO:\n\n"
+                    "1. Baixe Platform Tools:\n"
+                    "   https://developer.android.com/tools/releases/platform-tools\n\n"
+                    "2. Extraia para: C:\\platform-tools\n\n"
+                    "3. Adicione ao PATH:\n"
+                    "   - Painel de Controle → Sistema → Configurações avançadas\n"
+                    "   - Variáveis de Ambiente\n"
+                    "   - PATH → Adicionar: C:\\platform-tools\n\n"
+                    "4. Reinicie o APK Monitor Pro\n\n"
+                    "✅ Teste no CMD: adb version"
+                )
             
     def config_proxy(self):
         r = QMessageBox.question(self, "Proxy", 
@@ -433,9 +449,39 @@ class APKMonitorUI(QMainWindow):
                 QMessageBox.critical(self, "Erro", "\n".join(res['errors']))
                 
     def start(self):
+        # Verifica ADB primeiro
+        if not self.adb.check_adb_available():
+            QMessageBox.critical(
+                self,
+                "ADB não encontrado",
+                "ADB não está instalado ou não está no PATH!\n\n"
+                "Windows:\n"
+                "1. Baixe: https://developer.android.com/tools/releases/platform-tools\n"
+                "2. Extraia para C:\\platform-tools\n"
+                "3. Adicione C:\\platform-tools ao PATH\n"
+                "4. Reinicie este programa\n\n"
+                "macOS:\n"
+                "brew install android-platform-tools"
+            )
+            return
+        
         pkg = self.get_pkg()
         if not pkg:
             QMessageBox.warning(self, "Atenção", "Selecione a APK!")
+            return
+        
+        # Verifica dispositivo
+        devs = self.adb.get_connected_devices()
+        if not devs:
+            QMessageBox.warning(
+                self,
+                "Nenhum dispositivo",
+                "Nenhum dispositivo Android conectado!\n\n"
+                "1. Conecte o dispositivo via USB\n"
+                "2. Habilite 'Depuração USB' no Android\n"
+                "3. Aceite a mensagem no dispositivo\n"
+                "4. Execute: adb devices"
+            )
             return
             
         strict = (self.filter_combo.currentIndex() == 0)
@@ -450,15 +496,26 @@ class APKMonitorUI(QMainWindow):
                 
         level = self.level_combo.currentText()
         
-        self.thread = ADBThread(self.adb, pkg, level, strict)
-        self.thread.log_signal.connect(self.on_log)
-        self.thread.error_signal.connect(lambda e: QMessageBox.critical(self, "Erro", e))
-        self.thread.start()
-        
-        self.monitoring = True
-        self.start_btn.setEnabled(False)
-        self.stop_btn.setEnabled(True)
-        self.statusBar().showMessage(f"✅ Monitorando {pkg}")
+        try:
+            self.thread = ADBThread(self.adb, pkg, level, strict)
+            self.thread.log_signal.connect(self.on_log)
+            self.thread.error_signal.connect(lambda e: QMessageBox.critical(self, "Erro", e))
+            self.thread.start()
+            
+            self.monitoring = True
+            self.start_btn.setEnabled(False)
+            self.stop_btn.setEnabled(True)
+            self.statusBar().showMessage(f"✅ Monitorando {pkg}")
+        except Exception as e:
+            QMessageBox.critical(
+                self,
+                "Erro ao iniciar",
+                f"Erro ao iniciar monitoramento:\n\n{str(e)}\n\n"
+                f"Certifique-se que:\n"
+                f"1. ADB está instalado\n"
+                f"2. Dispositivo está conectado\n"
+                f"3. APK está rodando"
+            )
         
     def stop(self):
         if self.thread:
@@ -614,65 +671,34 @@ class APKMonitorUI(QMainWindow):
         self.tl_txt.setPlainText("\n".join(out))
         
     def gen_report(self, tipo):
-        try:
-            # 1. Captura as variáveis
-            ts = datetime.now().strftime("%Y%m%d_%H%M%S")
-            pkg_name = str(self.get_pkg())
-            apk_text = str(self.pkg_combo.currentText())
-            
-            # Cópia local das listas para evitar problemas de concorrência
-            logs_snapshot = list(self.logs)
-            errors_snapshot = list(self.errors)
-            
-            # 2. Monta o payload unificado
-            payload = {
-                "timestamp": ts,
-                "apk": apk_text,
-                "package": pkg_name,
-                "logs": logs_snapshot,
-                "network": [],
-                "errors": errors_snapshot
-            }
-            
-            # 3. Roteia para o gerador CORRETO (json ou html)
-            if tipo == 'json':
-                content = self.report.generate_json(payload)
-                fn = f"relatorio_apk_{ts}.json"
-                file_filter = "JSON (*.json)"
-            elif tipo == 'html':
-                content = self.report.generate_html(payload)
-                fn = f"relatorio_apk_{ts}.html"
-                file_filter = "HTML (*.html)"
-            else:
-                print(f"Tipo desconhecido: {tipo}")
-                return 
-            
-            # 4. Diálogo de salvar
-            options = QFileDialog.Options()
-            options |= QFileDialog.DontUseNativeDialog
-            
-            path, _ = QFileDialog.getSaveFileName(
-                self, 
-                "Salvar Relatório", 
-                fn, 
-                file_filter,
-                options=options
+        ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+        
+        if tipo == 'dev':
+            html = self.report.generate_dev_report(
+                [e['diag'] for e in self.errors],
+                self.logs,
+                []
             )
-            
-            # 5. Salva o arquivo final
-            if path:
-                with open(path, 'w', encoding='utf-8') as f:
-                    f.write(content)
-                QMessageBox.information(self, "OK", f"✅ Relatório salvo com sucesso em:\n{path}")
-                
-        except Exception as e:
-            import traceback
-            error_msg = traceback.format_exc()
-            QMessageBox.critical(self, "Erro na Geração", f"Não foi possível gerar o relatório.\n\nDetalhes:\n{str(e)}")
-            print("\n=== TRACEBACK ===")
-            print(error_msg)
-            print("=================")
-
+            fn = f"dev_{ts}.html"
+        elif tipo == 'infra':
+            html = self.report.generate_infra_report(
+                [e['diag'] for e in self.errors],
+                [],
+                self.adb.get_network_info()
+            )
+            fn = f"infra_{ts}.html"
+        else:
+            html = self.report.generate_executive_summary(
+                [e['diag'] for e in self.errors],
+                {}
+            )
+            fn = f"exec_{ts}.html"
+        
+        path, _ = QFileDialog.getSaveFileName(self, "Salvar", fn, "HTML (*.html)")
+        if path:
+            with open(path, 'w', encoding='utf-8') as f:
+                f.write(html)
+            QMessageBox.information(self, "OK", f"Salvo em:\n{path}")
     
     def start_frida_hook(self, hook_type):
         """Inicia hooking com Frida"""
