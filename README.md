@@ -420,3 +420,4 @@ Livre para uso pessoal e comercial.
 ---
 
 **Desenvolvido para análise profissional de APKs Android** 🚀
+
