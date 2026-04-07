@@ -808,3 +808,4 @@ if __name__ == "__main__":
     ui = APKMonitorUI()
     ui.show()
     sys.exit(app.exec_())
+  
