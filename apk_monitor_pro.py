@@ -802,7 +802,7 @@ class APKMonitorUI(QMainWindow):
                         "   adb shell 'su -c /data/local/tmp/frida-server &'"
                     )
 
-
+ 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     ui = APKMonitorUI()
