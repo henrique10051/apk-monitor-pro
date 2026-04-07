@@ -5,7 +5,28 @@ Filtros por PID, detecção automática, configuração de proxy
 
 import subprocess
 import re
+import sys
+import os
+from pathlib import Path
 from typing import Optional, List, Dict
+
+
+def get_adb_path():
+    """
+    Retorna caminho do ADB
+    Procura primeiro no executável embutido, depois no PATH
+    """
+    # Se rodando como executável PyInstaller
+    if getattr(sys, 'frozen', False):
+        # Executável compilado
+        base_path = Path(sys._MEIPASS)
+        adb_path = base_path / "adb" / "adb.exe" if sys.platform.startswith('win') else base_path / "adb" / "adb"
+        
+        if adb_path.exists():
+            return str(adb_path)
+    
+    # Fallback: usa ADB do PATH
+    return "adb"
 
 
 class ADBManager:
@@ -14,12 +35,13 @@ class ADBManager:
     def __init__(self):
         self.device_id = None
         self.package_pids = {}
+        self.adb_path = get_adb_path()
         
     def check_adb_available(self) -> bool:
         """Verifica se ADB está disponível"""
         try:
             result = subprocess.run(
-                ["adb", "version"],
+                [self.adb_path, "version"],
                 capture_output=True,
                 text=True,
                 timeout=5
@@ -35,7 +57,7 @@ class ADBManager:
         """Lista dispositivos conectados"""
         try:
             result = subprocess.run(
-                ["adb", "devices"],
+                [self.adb_path, "devices"],
                 capture_output=True,
                 text=True
             )
@@ -63,7 +85,7 @@ class ADBManager:
         try:
             # Tenta ps (Android novo)
             result = subprocess.run(
-                ["adb", "shell", "pidof", package_name],
+                [self.adb_path, "shell", "pidof", package_name],
                 capture_output=True,
                 text=True,
                 timeout=5
@@ -76,7 +98,7 @@ class ADBManager:
             
             # Fallback: ps + grep
             result = subprocess.run(
-                ["adb", "shell", "ps", "|", "grep", package_name],
+                [self.adb_path, "shell", "ps", "|", "grep", package_name],
                 capture_output=True,
                 text=True,
                 shell=True,
@@ -110,7 +132,7 @@ class ADBManager:
         """
         try:
             result = subprocess.run(
-                ["adb", "shell", "ps", "|", "grep", "overit"],
+                [self.adb_path, "shell", "ps", "|", "grep", "overit"],
                 capture_output=True,
                 text=True,
                 shell=True,
@@ -147,7 +169,7 @@ class ADBManager:
             Processo do logcat
         """
         # Limpa buffer
-        subprocess.run(["adb", "logcat", "-c"], check=False)
+        subprocess.run([self.adb_path, "logcat", "-c"], check=False)
         
         if strict_mode:
             # Modo Rígido: Apenas PID específico
@@ -193,7 +215,7 @@ class ADBManager:
         try:
             # ADB reverse
             result = subprocess.run(
-                ["adb", "reverse", f"tcp:{port}", f"tcp:{port}"],
+                [self.adb_path, "reverse", f"tcp:{port}", f"tcp:{port}"],
                 capture_output=True,
                 text=True,
                 timeout=10
@@ -230,7 +252,7 @@ class ADBManager:
         try:
             # 1. Verifica root
             check_root = subprocess.run(
-                ["adb", "shell", "su", "-c", "id"],
+                [self.adb_path, "shell", "su", "-c", "id"],
                 capture_output=True,
                 text=True,
                 timeout=5
@@ -252,7 +274,7 @@ class ADBManager:
             # 4. Executa comandos
             for name, cmd in commands:
                 result = subprocess.run(
-                    ["adb", "shell", "su", "-c", cmd],
+                    [self.adb_path, "shell", "su", "-c", cmd],
                     capture_output=True,
                     text=True,
                     timeout=5
@@ -285,7 +307,7 @@ class ADBManager:
         """
         try:
             result = subprocess.run(
-                ["adb", "shell", "su", "-c", "iptables -t nat -F"],
+                [self.adb_path, "shell", "su", "-c", "iptables -t nat -F"],
                 capture_output=True,
                 text=True,
                 timeout=5
@@ -334,7 +356,7 @@ class ADBManager:
         try:
             # WiFi status
             result = subprocess.run(
-                ["adb", "shell", "dumpsys", "wifi", "|", "grep", "Wi-Fi"],
+                [self.adb_path, "shell", "dumpsys", "wifi", "|", "grep", "Wi-Fi"],
                 capture_output=True,
                 text=True,
                 shell=True,
@@ -346,7 +368,7 @@ class ADBManager:
             
             # SSID
             result = subprocess.run(
-                ["adb", "shell", "dumpsys", "wifi", "|", "grep", "mWifiInfo"],
+                [self.adb_path, "shell", "dumpsys", "wifi", "|", "grep", "mWifiInfo"],
                 capture_output=True,
                 text=True,
                 shell=True,
@@ -367,7 +389,7 @@ class ADBManager:
             
             # IP Address
             result = subprocess.run(
-                ["adb", "shell", "ip", "addr", "show", "wlan0"],
+                [self.adb_path, "shell", "ip", "addr", "show", "wlan0"],
                 capture_output=True,
                 text=True,
                 timeout=5
@@ -394,7 +416,7 @@ class ADBManager:
         """
         try:
             result = subprocess.run(
-                ["adb", "shell", "ping", "-c", "3", host],
+                [self.adb_path, "shell", "ping", "-c", "3", host],
                 capture_output=True,
                 text=True,
                 timeout=10
@@ -431,7 +453,7 @@ class ADBManager:
         try:
             # Verifica se está instalado
             result = subprocess.run(
-                ["adb", "shell", "pm", "list", "packages", "|", "grep", package_name],
+                [self.adb_path, "shell", "pm", "list", "packages", "|", "grep", package_name],
                 capture_output=True,
                 text=True,
                 shell=True,
@@ -445,7 +467,7 @@ class ADBManager:
             
             # Pega info do pacote
             result = subprocess.run(
-                ["adb", "shell", "dumpsys", "package", package_name],
+                [self.adb_path, "shell", "dumpsys", "package", package_name],
                 capture_output=True,
                 text=True,
                 timeout=5
