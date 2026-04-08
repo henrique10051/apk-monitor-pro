@@ -375,22 +375,25 @@ class APKMonitorUI(QMainWindow):
         w = QWidget()
         l = QVBoxLayout()
         
-        l.addWidget(QLabel("<h2>📄 Relatórios</h2>"))
+        l.addWidget(QLabel("<h2>📄 Exportar Dados do Monitoramento</h2>"))
         
-        dev = QPushButton("👨‍💻 Para DEVs")
-        dev.clicked.connect(lambda: self.gen_report('dev'))
-        dev.setStyleSheet("background:#2196F3;color:white;padding:15px")
-        l.addWidget(dev)
+        info = QLabel(
+            "O relatório consolida todos os logs capturados, eventos de rede e "
+            "diagnósticos de erro em um único arquivo."
+        )
+        info.setWordWrap(True)
+        info.setStyleSheet("color: #666; margin-bottom: 20px;")
+        l.addWidget(info)
         
-        infra = QPushButton("🌐 Para INFRA")
-        infra.clicked.connect(lambda: self.gen_report('infra'))
-        infra.setStyleSheet("background:#4CAF50;color:white;padding:15px")
-        l.addWidget(infra)
+        btn_json = QPushButton("{ } Exportar JSON (Dados Brutos)")
+        btn_json.clicked.connect(lambda: self.gen_report('json'))
+        btn_json.setStyleSheet("background:#2196F3;color:white;padding:15px;font-weight:bold;font-size:14px;")
+        l.addWidget(btn_json)
         
-        exe = QPushButton("📊 Executivo")
-        exe.clicked.connect(lambda: self.gen_report('exec'))
-        exe.setStyleSheet("background:#FF9800;color:white;padding:15px")
-        l.addWidget(exe)
+        btn_html = QPushButton("🌐 Exportar HTML (Dashboard Visual)")
+        btn_html.clicked.connect(lambda: self.gen_report('html'))
+        btn_html.setStyleSheet("background:#4CAF50;color:white;padding:15px;font-weight:bold;font-size:14px;")
+        l.addWidget(btn_html)
         
         l.addStretch()
         w.setLayout(l)
@@ -674,34 +677,64 @@ class APKMonitorUI(QMainWindow):
         self.tl_txt.setPlainText("\n".join(out))
         
     def gen_report(self, tipo):
-        ts = datetime.now().strftime("%Y%m%d_%H%M%S")
-        
-        if tipo == 'dev':
-            html = self.report.generate_dev_report(
-                [e['diag'] for e in self.errors],
-                self.logs,
-                []
+        try:
+            # 1. Captura as variáveis
+            ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+            pkg_name = str(self.get_pkg())
+            apk_text = str(self.pkg_combo.currentText())
+            
+            # Cópia local das listas para evitar problemas de concorrência
+            logs_snapshot = list(self.logs)
+            errors_snapshot = list(self.errors)
+            
+            # 2. Monta o payload unificado
+            payload = {
+                "timestamp": ts,
+                "apk": apk_text,
+                "package": pkg_name,
+                "logs": logs_snapshot,
+                "network": [],
+                "errors": errors_snapshot
+            }
+            
+            # 3. Roteia para o gerador CORRETO (json ou html)
+            if tipo == 'json':
+                content = self.report.generate_json(payload)
+                fn = f"relatorio_apk_{ts}.json"
+                file_filter = "JSON (*.json)"
+            elif tipo == 'html':
+                content = self.report.generate_html(payload)
+                fn = f"relatorio_apk_{ts}.html"
+                file_filter = "HTML (*.html)"
+            else:
+                print(f"Tipo desconhecido: {tipo}")
+                return 
+            
+            # 4. Diálogo de salvar
+            options = QFileDialog.Options()
+            options |= QFileDialog.DontUseNativeDialog
+            
+            path, _ = QFileDialog.getSaveFileName(
+                self, 
+                "Salvar Relatório", 
+                fn, 
+                file_filter,
+                options=options
             )
-            fn = f"dev_{ts}.html"
-        elif tipo == 'infra':
-            html = self.report.generate_infra_report(
-                [e['diag'] for e in self.errors],
-                [],
-                self.adb.get_network_info()
-            )
-            fn = f"infra_{ts}.html"
-        else:
-            html = self.report.generate_executive_summary(
-                [e['diag'] for e in self.errors],
-                {}
-            )
-            fn = f"exec_{ts}.html"
-        
-        path, _ = QFileDialog.getSaveFileName(self, "Salvar", fn, "HTML (*.html)")
-        if path:
-            with open(path, 'w', encoding='utf-8') as f:
-                f.write(html)
-            QMessageBox.information(self, "OK", f"Salvo em:\n{path}")
+            
+            # 5. Salva o arquivo final
+            if path:
+                with open(path, 'w', encoding='utf-8') as f:
+                    f.write(content)
+                QMessageBox.information(self, "OK", f"✅ Relatório salvo com sucesso em:\n{path}")
+                
+        except Exception as e:
+            import traceback
+            error_msg = traceback.format_exc()
+            QMessageBox.critical(self, "Erro na Geração", f"Não foi possível gerar o relatório.\n\nDetalhes:\n{str(e)}")
+            print("\n=== TRACEBACK ===")
+            print(error_msg)
+            print("=================")
     
     def start_frida_hook(self, hook_type):
         """Inicia hooking com Frida"""
